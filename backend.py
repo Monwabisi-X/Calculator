@@ -5,97 +5,129 @@ def add(a, b):
     """
     Add two numbers and return the result.
     """
-    pass
+    return a + b
 
 def subtract(a, b):
     """
     Subtract the second number from the first and return the result.
     """
-    pass
+    return a - b
 
 def multiply(a, b):
     """
     Multiply two numbers and return the result.
     """
-    pass
+    return a * b
 
 def divide(a, b):
     """
     Divide the first number by the second and return the result.
     Handle division by zero by returning "Error: Division by zero".
     """
-    pass
+    return a / b if b != 0 else "Error: Division by zero"
 
 def sqrt(a):
     """
     Return the square root of a number.
     Handle negative inputs by returning "Error: Negative input".
     """
-    pass
+    return math.sqrt(a) if a >= 0 else "Error: Negative input"
 
 def modulus(a, b):
     """
     Return the remainder of the division of the first number by the second.
     Handle division by zero by returning "Error: Division by zero".
     """
-    pass
+    return a % b if b != 0 else "Error: Division by zero"
 
 def exponent(a, b):
     """
     Return the result of raising the first number to the power of the second.
     """
-    pass
+    return a ** b
 
 def factorial(a):
     """
     Return the factorial of a number.
     Handle negative inputs by returning "Error: Negative input".
     """
-    pass
+    return math.factorial(a) if a >= 0 else "Error: Negative input"
 
 def log(a, base):
     """
     Return the logarithm of a number with a specified base.
     Handle invalid inputs by returning "Error: Invalid input".
     """
-    pass
+    return math.log(a, base) if a > 0 and (1> base > 0 or base > 1) else "Error: Invalid input"
 
 def sin(a):
     """
     Return the sine of a number (in radians).
     """
-    pass
+    return math.sin(a)
 
 def cos(a):
     """
     Return the cosine of a number (in radians).
     """
-    pass
+    return math.cos(a)
 
 def tan(a):
     """
     Return the tangent of a number (in radians).
     Handle undefined cases by returning "Error: Undefined".
     """
-    pass
+    return math.tan(a) if a != math.radians(90) else "Error: Undefined"
 
 def degrees_to_radians(degrees):
     """
     Convert degrees to radians.
     """
-    pass
+    return math.radians(degrees)
 
 def radians_to_degrees(radians):
     """
     Convert radians to degrees.
     """
-    pass
+    return math.degrees(radians)
 
-def evaluate_expression(expression):
+def evaluate_expression(expression: str):
     """
     Evaluate a mathematical expression using PEMDAS/BODMAS rules.
     The expression is a string, e.g., "3 / 7 * 8 % 3".
     This function will call other calculator functions in the correct order.
     DO NOT USE THE eval() expression.
     """
-    pass
+    new_expression = expression.strip().replace(" ", "")
+    brackets = None
+    if "(" in new_expression:
+        brackets = new_expression.split("(")[1].split(")")[0]
+
+    for char in range(len(new_expression)):
+        a = int(new_expression[char - 1])
+        b = int(new_expression[char + 1])
+        if new_expression[char] == "*":
+            multiply(a, b)
+
+        if new_expression[char] == "/":
+            divide(a, b)
+
+        if new_expression[char] == "+":
+            add(a, b)
+
+        if new_expression[char] == "-":
+            subtract(a, b)
+
+        # if new_expression[char] == "sqrt":
+        #     add(a, b)
+
+        # if new_expression[char] == "factorial":
+        #     add(a, b)
+
+        # if new_expression[char] == "log":
+        #     add(a, b)
+
+        # if new_expression[char] == "invalid":
+            # add(a, b)
+
+string = "11+45-27*4+8"
