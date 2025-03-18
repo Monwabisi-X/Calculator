@@ -98,36 +98,41 @@ def evaluate_expression(expression: str):
     This function will call other calculator functions in the correct order.
     DO NOT USE THE eval() expression.
     """
-    new_expression = expression.strip().replace(" ", "")
-    brackets = None
-    if "(" in new_expression:
-        brackets = new_expression.split("(")[1].split(")")[0]
+    new_expression = expression.split()
+    # new_expression = expression.strip().replace(" ", "")
+    # brackets = None
+    # if "(" in new_expression:
+    #     brackets = new_expression.split("(")[1].split(")")[0]
 
-    for char in range(len(new_expression)):
-        a = int(new_expression[char - 1])
-        b = int(new_expression[char + 1])
-        if new_expression[char] == "*":
-            multiply(a, b)
+    for char in new_expression:
+        index = new_expression.index(char)
+        
+        a = int(new_expression[index])
+        b = int(new_expression[index + 2])
+        
+        if new_expression[index + 1] == "*":
+            return multiply(a, b)
 
-        if new_expression[char] == "/":
-            divide(a, b)
+        elif new_expression[index + 1] == "/":
+            return divide(a, b)
 
-        if new_expression[char] == "+":
-            add(a, b)
+        elif new_expression[index + 1] == "+":
+            return add(a, b)
 
-        if new_expression[char] == "-":
-            subtract(a, b)
+        elif new_expression[index + 1] == "-":
+            return subtract(a, b)
 
-        # if new_expression[char] == "sqrt":
+        # if new_expression[index] == "sqrt":
         #     add(a, b)
 
-        # if new_expression[char] == "factorial":
+        # if new_expression[index] == "factorial":
         #     add(a, b)
 
-        # if new_expression[char] == "log":
+        # if new_expression[index] == "log":
         #     add(a, b)
 
-        # if new_expression[char] == "invalid":
+        # if new_expression[index] == "invalid":
             # add(a, b)
 
-string = "11+45-27*4+8"
+# string = "11+45-27*4+8"
+print(evaluate_expression("10 / 0"))
