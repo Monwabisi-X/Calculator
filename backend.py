@@ -106,33 +106,39 @@ def evaluate_expression(expression: str):
 
     for char in new_expression:
         index = new_expression.index(char)
+        a = None
+        b = None
         
-        a = int(new_expression[index])
-        b = int(new_expression[index + 2])
+        if len(new_expression) > 2:
+            if new_expression[index + 1].isdigit() and new_expression[index + 2].isdigit():
+                a = int(new_expression[index])
+                b = int(new_expression[index + 2])
+            
+            if new_expression[index + 1] == "*":
+                return multiply(a, b)
+
+            elif new_expression[index + 1] == "/":
+                return divide(a, b)
+
+            elif new_expression[index + 1] == "+":
+                return add(a, b)
+
+            elif new_expression[index + 1] == "-":
+                return subtract(a, b)
         
-        if new_expression[index + 1] == "*":
-            return multiply(a, b)
+        a = int(new_expression[index].split("(")[1].split(")")[0])
+        
+        if "sqrt" in new_expression[index]:
+            return sqrt(a)
 
-        elif new_expression[index + 1] == "/":
-            return divide(a, b)
+            # if new_expression[index] == "factorial":
+            #     add(a, b)
 
-        elif new_expression[index + 1] == "+":
-            return add(a, b)
+            # if new_expression[index] == "log":
+            #     add(a, b)
 
-        elif new_expression[index + 1] == "-":
-            return subtract(a, b)
-
-        # if new_expression[index] == "sqrt":
-        #     add(a, b)
-
-        # if new_expression[index] == "factorial":
-        #     add(a, b)
-
-        # if new_expression[index] == "log":
-        #     add(a, b)
-
-        # if new_expression[index] == "invalid":
-            # add(a, b)
+            # if new_expression[index] == "invalid":
+                # add(a, b)
 
 # string = "11+45-27*4+8"
-print(evaluate_expression("10 / 0"))
+print(evaluate_expression("sqrt(16)"))
