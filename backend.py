@@ -126,19 +126,17 @@ def evaluate_expression(expression: str):
             elif new_expression[index + 1] == "-":
                 return subtract(a, b)
         
-        a = int(new_expression[index].split("(")[1].split(")")[0])
+        c = int(new_expression[index].split("(")[1].split(")")[0])
+        # return c
         
         if "sqrt" in new_expression[index]:
-            return sqrt(a)
+            return sqrt(c)
+        
+        if "factorial" in new_expression[index]:
+            return factorial(c)
 
-            # if new_expression[index] == "factorial":
-            #     add(a, b)
-
-            # if new_expression[index] == "log":
-            #     add(a, b)
-
-            # if new_expression[index] == "invalid":
-                # add(a, b)
+        # if "log" in new_expression[index]:
+            # return log(c)
 
 # string = "11+45-27*4+8"
 print(evaluate_expression("sqrt(16)"))
